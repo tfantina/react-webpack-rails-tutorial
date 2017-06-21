@@ -8,7 +8,7 @@ import SelectLanguage from 'libs/i18n/selectLanguage';
 import { defaultMessages, defaultLocale } from 'libs/i18n/default';
 
 import CommentForm from './CommentForm/CommentForm';
-import CommentList, { CommentPropTypes } from './CommentList/CommentList';
+import CommentList, { commentPropTypes } from './CommentList/CommentList';
 import css from './CommentBox.scss';
 
 class CommentBox extends BaseComponent {
@@ -21,7 +21,7 @@ class CommentBox extends BaseComponent {
       isFetching: React.PropTypes.boolean,
       isSaving: React.PropTypes.boolean,
       submitCommentError: React.PropTypes.string,
-      $$comments: React.PropTypes.arrayOf(CommentPropTypes),
+      $$comments: React.PropTypes.arrayOf(commentPropTypes),
     }).isRequired,
     intl: intlShape.isRequired,
   };

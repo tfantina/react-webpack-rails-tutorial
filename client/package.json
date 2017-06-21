@@ -82,6 +82,7 @@
     "react-bootstrap": "^0.30.8",
     "react-dom": "^15.4.1",
     "react-intl": "^2.2.2",
+    "react-hot-loader": "^3.0.0-beta.7",
     "react-on-rails": "8.0.1",
     "react-redux": "^4.4.6",
     "react-router": "^3.0.0",
@@ -116,7 +117,6 @@
     "mocha": "^3.2.0",
     "pug": "^2.0.0-beta11",
     "react-addons-test-utils": "^15.5.1",
-    "react-transform-hmr": "^1.0.4",
     "sleep": "^5.1.1",
     "webpack-dev-server": "^2.4.2"
   }

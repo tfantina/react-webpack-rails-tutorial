@@ -1,10 +1,10 @@
 /* eslint no-var: 0, no-console: 0, import/no-extraneous-dependencies: 0 */
 
-import webpack from 'webpack';
+const webpack = require('webpack');
 
-import WebpackDevServer from 'webpack-dev-server';
+const WebpackDevServer = require('webpack-dev-server');
 
-import webpackConfig from './webpack.client.rails.hot.config';
+const webpackConfig = require('./webpack.client.rails.hot.config');
 
 const { resolve } = require('path');
 
@@ -16,9 +16,10 @@ const { hotReloadingUrl, hotReloadingPort, hotReloadingHostname } = webpackConfi
 const compiler = webpack(webpackConfig);
 
 const devServer = new WebpackDevServer(compiler, {
-  proxy: {
-    '*': `http://lvh.me:${hotReloadingPort}`,
+  headers: {
+    'Access-Control-Allow-Origin': '*',
   },
+  clientLogLevel: 'info',
   contentBase: hotReloadingUrl,
   hot: true,
   inline: true,

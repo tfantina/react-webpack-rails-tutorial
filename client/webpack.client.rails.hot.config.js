@@ -15,11 +15,18 @@ const webpackConfigLoader = require('react-on-rails/webpackConfigLoader');
 const configPath = resolve('..', 'config');
 const { hotReloadingUrl, webpackOutputPath } = webpackConfigLoader(configPath);
 
-module.exports = merge(config, {
+// entry is prepended because 'react-hot-loader/patch' must be the very first entry
+// for hot reloading to work.
+module.exports = merge.strategy(
+ {
+   entry: 'prepend'
+ }
+)(config, {
   devtool: 'eval-source-map',
 
   entry: {
     'app-bundle': [
+      'react-hot-loader/patch',
       `webpack-dev-server/client?${hotReloadingUrl}`,
       'webpack/hot/only-dev-server'
     ],
@@ -34,6 +41,7 @@ module.exports = merge(config, {
   output: {
     filename: '[name].js',
     path: webpackOutputPath,
+    publicPath: `${hotReloadingUrl}/`,
   },
 
   module: {
@@ -41,24 +49,7 @@ module.exports = merge(config, {
       {
         test: /\.jsx?$/,
         loader: 'babel-loader',
-        exclude: /node_modules/,
-        query: {
-          plugins: [
-            [
-              'react-transform',
-              {
-                superClasses: ['React.Component', 'BaseComponent', 'Component'],
-                transforms: [
-                  {
-                    transform: 'react-transform-hmr',
-                    imports: ['react'],
-                    locals: ['module'],
-                  },
-                ],
-              },
-            ],
-          ],
-        },
+        exclude: /node_modules/
       },
       {
         test: /\.css$/,
