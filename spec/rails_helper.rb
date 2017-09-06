@@ -32,6 +32,10 @@ ActiveRecord::Migration.maintain_test_schema!
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 RSpec.configure do |config|
+  # Ensure that if we are running js tests, we are using latest webpack assets
+  # This will use the defaults of :js and :server_rendering meta tags
+  ReactOnRails::TestHelper.configure_rspec_to_compile_assets(config)
+
   config.include FactoryGirl::Syntax::Methods
 
   # Next line will ensure that assets are built if webpack -w is not running

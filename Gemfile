@@ -2,7 +2,6 @@ source "https://rubygems.org"
 ruby "2.4.1"
 
 gem "react_on_rails", "8.0.6.rc.1"
-gem 'webpacker', '~> 3.0'
 gem "webpacker_lite", "2.1.0"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails"
@@ -106,3 +105,5 @@ group :test do
   gem "rspec-retry"
   gem "selenium-webdriver", "<3.0.0"
 end
+
+gem 'mini_racer', platforms: :ruby
